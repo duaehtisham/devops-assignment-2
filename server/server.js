@@ -15,12 +15,20 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
-    origin: "*", // Allow all origins
-    credentials: false, // MUST be false when using wildcard origin
+    origin: function (origin, callback) {
+      // Allow if no origin (e.g., curl/postman) or matches our frontend
+      if (!origin || origin === "http://192.168.49.2:30010") {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 
 app.use("/owner", ownerRouter);   
 app.use("/apartments", apartmentRouter);       
