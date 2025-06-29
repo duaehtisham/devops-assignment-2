@@ -16,7 +16,8 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
     origin: function (origin, callback) {
-      const allowedOrigins = ["http://13.60.195.72:3000", "http://13.60.195.72:3001", "http://frontend-service:3000", "http://frontend-service:3001"];
+      const allowedOrigins = ["http://13.60.195.72:3000", "http://13.60.195.72:3001", "http://frontend-service:3000", "http://frontend-service:3001", "http://127.0.0.1:42117",              
+  "http://192.168.49.2:30869"];
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
