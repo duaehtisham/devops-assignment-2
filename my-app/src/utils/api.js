@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Replace with your IP-based backend API
 export const API = axios.create({
-  baseURL: 'http://13.60.195.72:5000/',
+  baseURL: 'http://backend-service:5000/',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
